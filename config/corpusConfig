@@ -1,0 +1,13 @@
+{
+    "train_data_file":"train_data", 
+    "dev_data_file":"dev_data",
+    "test_data_file":"test_data",
+    "vocab_file":"vocab",
+    "intent_id_file":"intent_id_file",
+    "id_intent_file":"id_intent_file",
+	"tag_id_file":"tag_id_file",
+	"id_tag_file":"id_tag_file",
+    "data_path":"../data/ticket/",
+    "char_embedding":true
+}
+

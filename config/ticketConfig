@@ -1,0 +1,44 @@
+{
+    "corpus_info": { 
+        "train_data_file":"train_data", 
+        "dev_data_file":"dev_data",
+        "test_data_file":"test_data",
+        "vocab_file":"vocab",
+        "intent_id_file":"intent_id_file",
+        "id_intent_file":"id_intent_file",
+		"tag_id_file":"tag_id_file",
+		"id_tag_file":"id_tag_file",
+		"data_path":"../../data/ticket/",
+		"dev_res":"./model/dev_result",
+        "char_embedding":true
+    },
+	"model_parameters": {
+		"max_len":20,
+		"embedding_size":200,
+		"learning_rate":1e-3,
+		"embedding_type":"word_embedding",
+		"region_size":3,
+		"vocab_size":5557,
+		"out_size":9,
+		"train_epoch":10,
+		"batch_size":64,
+		"ckpt_file_path":"model/ckpt"
+	},
+	"loss_parameters": {
+		"loss_type":"cross_entropy",
+		"gamma":2.0,
+		"alpha":0.25,
+		"lamda":0.05,
+		"binary_margin":0.6
+	},
+	"encoder_parameters": {
+		"hidden_size":64,
+		"keep_prob":0.5,
+		"encoder_type":"rnn_encoder",
+		"with_attention_layer":true,
+		"basic_cell":"lstm_cell",
+		"need_highway":false,
+		"num_filters":100,
+		"filter_size":3
+	}
+}
