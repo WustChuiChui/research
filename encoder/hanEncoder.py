@@ -7,7 +7,6 @@ from config.configParser import ConfigParser
 
 """
 Brief: HAN Encoder
-Author: wangjia8@xiaomi.com
 reference:  Hierarchical Attention Networks for Document Classification
 """
 

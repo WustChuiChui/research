@@ -6,7 +6,6 @@ from config.configParser import ConfigParser
 
 """
 Brief: all Attention Encoder
-Author: wangjia8@xiaomi.com
 reference:  Attention Is All You Need
 """
 

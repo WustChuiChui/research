@@ -3,7 +3,6 @@
 
 """
 Loss Adapter for classification
-Author: wangjia8@xiaomi.com
 """
 
 import sys

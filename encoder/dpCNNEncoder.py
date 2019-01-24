@@ -5,7 +5,6 @@ from config.configParser import ConfigParser
 
 """
 Brief: DPCNN Encoder
-Author: wangjia8@xiaomi.com
 Tencent: Deep Pymirid Convolutional neural networks for text categorization
 """
 

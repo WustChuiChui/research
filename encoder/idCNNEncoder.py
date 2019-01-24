@@ -5,7 +5,6 @@ from config.configParser import ConfigParser
 
 """
 Brief: IDCNN Encoder
-Author: wangjia8@xiaomi.com
 refenrence: End to End Chinese Named Entity Recognition by Iterated Dilated Convolution Nerual Networks with Conditional Random Field layer.
 """
 

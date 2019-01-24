@@ -9,7 +9,6 @@ from config.configParser import ConfigParser
 
 """
 Brief: Rnn Encoder
-Author: wangjia8@xiaomi.com
 """
 
 class RNNEncoder(object):

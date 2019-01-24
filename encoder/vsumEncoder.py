@@ -3,7 +3,6 @@
 
 """
 Simple Vsum Encoder (DAN Encoder)
-Author: wangjia8@xiaomi.com
 facebook: FastText (embbeding & linear layer has not imlemented here.) 
 """
 import sys

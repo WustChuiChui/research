@@ -13,7 +13,6 @@ from encoder.hanEncoder import HANEncoder
 
 """
 Encoder Adapter
-Author: wangjia8@xiaomi.com
 """
 
 class EncoderAdapter(object):

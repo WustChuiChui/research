@@ -5,7 +5,6 @@ from pathlib import Path
 
 """
 @brief: 文件读取预处理脚本文件
-@Author: wangjia8@xiaomi.com
 """
 
 def loadKeyValueCorpus(file_name, key="query", value="label"):
