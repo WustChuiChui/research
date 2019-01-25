@@ -63,9 +63,9 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
              need_highway: 是否加入highway网络结构, 默认为false(不加入highway结构)       
 
 ## 实验结果:
-* 1. embedding     
-embedding类型|模型结构|loss|准确率 
-:----------:|:---------:|:----------:|:--------:
+* 1 embedding:     
+embedding类型 | 模型结构 | loss | 准确率   
+----------|----------|----------|--------
   word_embedding  |  CNN  |  cross_entropy  |  91.2%  
   win_pool_embedding  |  CNN  |  cross_entropy  |  **92.4%**  
   scalar_region_embedding  |  CNN  |  cross_entropy  |  92.1%  
