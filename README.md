@@ -75,6 +75,7 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | multi_region_embedding | CNN | cross_entropy | 91.8% |
 
 ###  loss:
+**hard_cross_entropy**针对二分类，这里是多分类(8个类别)，没做对比实验
 | loss类型 | 模型结构 | embedding类型 | 准确率 |
 | --------- | :---------: | :----------: | :----------: |
 | cross_entropy | CNN | word_embedding | 91.2% |
