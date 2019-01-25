@@ -74,13 +74,13 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | context_word_embedding | CNN | cross_entropy | 92.0% |
 | multi_region_embedding | CNN | cross_entropy | 91.8% |
 
-###  loss(多分类):
+###  loss:
 | loss类型 | 模型结构 | embedding类型 | 准确率 |
 | --------- | :---------: | :----------: | :----------: |
 | cross_entropy | CNN | word_embedding | 91.2% |
 | focal_loss | CNN | word_embedding | **91.4%** |
 | uni_loss | CNN | word_embedding | 91.3% |
-| hard_cross_entropy(二分类) | | | |
+| hard_cross_entropy | | | |
 
 ### encoder:
 | encoder结构 | embedding类型 | loss类型 | 准确率 |
