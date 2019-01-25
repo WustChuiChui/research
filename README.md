@@ -63,14 +63,7 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
              need_highway: 是否加入highway网络结构, 默认为false(不加入highway结构)       
 
 ## 实验结果:
-* 1 embedding:     
-embedding类型 | 模型结构 | loss | 准确率   
-  word_embedding  |  CNN  |  cross_entropy  |  91.2%  
-  win_pool_embedding  |  CNN  |  cross_entropy  |  **92.4%**  
-  scalar_region_embedding  |  CNN  |  cross_entropy  |  92.1%  
-  word_context_embedding  |  CNN  |  cross_entropy  |  92.3%  
-  context_word_embedding  |  CNN  |  cross_entropy  |  92.0%  
-  multi_region_embedding  |  CNN  |  cross_entropy  |  91.8%  
+### embedding:     
 
 | embedding类型 | 模型结构 | loss | 准确率 |
 | ---------  | :---------:   | :---------: | :---------: |
@@ -80,6 +73,29 @@ embedding类型 | 模型结构 | loss | 准确率
 | word_context_embedding | CNN | cross_entropy | 92.3% |
 | context_word_embedding | CNN | cross_entropy | 92.0% |
 | multi_region_embedding | CNN | cross_entropy | 91.8% |
+
+###  loss:
+| loss类型 | 模型结构 | embedding类型 | 准确率 |
+| --------- | :---------: | :----------: | :----------: |
+| cross_entropy | CNN | word_embedding | 91.2% |
+| focal_loss | CNN | word_embedding | **91.4%** |
+| uni_loss | CNN | word_embedding | 91.3% |
+
+### encoder:
+| encoder结构 | embedding类型 | loss类型 | 准确率 |
+| --------- | :---------: | :----------: | :----------: |
+| CNN | word_embedding | cross_entropy | 91.2% |
+| RNN(rnn_cell) | word_embedding | cross_entropy | 91.6% |
+| RNN(lstm_cell) | word_embedding | cross_entropy | 91.9% |
+| RNN(gru_cell) | word_embedding | cross_entropy | 91.7% |
+| RNN(indRnn_cell) | word_embedding | cross_entropy | 91.9% |
+| DCNN | word_embedding | cross_entropy | 91.8% |
+| DPCNN | word_embedding | cross_entropy | 91.7% |
+| VSUM | word_embedding | cross_entropy | 88.7% |
+| Weighted_SUM | word_embedding | cross_entropy | 89.2% |
+| ATTENTION | word_embedding | cross_entropy | 90.6% |
+| HAN | word_embedding | cross_entropy | **92.2%** |
+
 
 ## 参考文献:
 (待整理)
