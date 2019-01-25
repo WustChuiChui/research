@@ -108,8 +108,9 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | HAN + highway | word_embedding | cross_entropy | 92.1% |
 | ATTENTION + highway | word_embedding | cross_entropy | 91.2% |
 
-##
-觉得好用引用该代码请注明代码出处，记得留下你的小星星哦
+
+## 说明
+如果您觉得该代码好用, 引用该代码时请注明代码出处，记得留下你的小星星哦
 
 ## 参考文献:
 (待整理)
