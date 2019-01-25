@@ -72,9 +72,9 @@ embedding类型 | 模型结构 | loss | 准确率
   context_word_embedding  |  CNN  |  cross_entropy  |  92.0%  
   multi_region_embedding  |  CNN  |  cross_entropy  |  91.8%  
 
-| 水果 | 价格 | 数量 |
-| ----  | -----:   | :----: |
-| 香蕉  | 1     | 5 |
+| embedding类型 | 模型结构 | loss | 准确率 |
+| ---------  | ---------:   | ---------: | :---------: |
+| word_embedding  | CNN     | cross_entropy | 91.2%  |
 
 ## 参考文献:
 (待整理)
