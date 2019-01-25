@@ -73,8 +73,10 @@ embedding类型 | 模型结构 | loss | 准确率
   multi_region_embedding  |  CNN  |  cross_entropy  |  91.8%  
 
 | embedding类型 | 模型结构 | loss | 准确率 |
-| ---------  | ---------:   | ---------: | :---------: |
-| word_embedding  | CNN     | cross_entropy | 91.2%  |
+| ---------  | :---------:   | :---------: | :---------: |
+| word_embedding  | CNN | cross_entropy | 91.2%  |
+| win_pool_embedding | CNN | cross_entropy | **92.4** |
+| scalar_region_embedding | CNN | cross_entropy | 92.1% |
 
 ## 参考文献:
 (待整理)
