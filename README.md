@@ -1,7 +1,7 @@
 # 前沿深度学习代码复现与优化
 
 ## 简介：
-这里对学术界2014-2018年State Of The Art papers进行了代码集成与复现，便于进行对比实验验证分析。
+这里对学术界2014-2018年**State Of The Art papers**进行了代码集成与复现，便于进行对比实验验证分析。
 目前已集成文本分类的相关代码，供大家学习，有任何写得不好的地方，欢迎大家及时指正。
 
 ## 环境配置:
@@ -14,9 +14,9 @@ python sentiment_trainer.py
 
 ## 数据格式:
 Json格式存储。每一行Json数据对象应包含query字段,intent为分类标签,tags为序列标注标签,该数据格式支持
-分类和序列标注的联合模型实用,intent和tags均为可选字段(不可同时缺失), 如:
-<br/> {"query": "今天很开心", "intent": "positive"} </br>
-<br/> {"query": "张三今天很开心", "intent": "positive", "tags":"B_PERSON E_PERSON O O O O O"} </br>
+分类和序列标注的联合模型实用,intent和tags均为可选字段(不可同时缺失), 如:  
+{"query": "今天很开心", "intent": "positive"}   
+{"query": "张三今天很开心", "intent": "positive", "tags":"B_PERSON E_PERSON O O O O O"}   
 
 ## 参数说明:
 由于本项目中对多个模型进行了集成,可能需要您选定指定的参数去调用不同的embedding或encoder。本项目将所
