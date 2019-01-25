@@ -94,8 +94,18 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | VSUM | word_embedding | cross_entropy | 88.7% |
 | Weighted_SUM | word_embedding | cross_entropy | 89.2% |
 | ATTENTION | word_embedding | cross_entropy | 90.6% |
-| HAN | word_embedding | cross_entropy | **92.2%** |
-
+| HAN | word_embedding | cross_entropy | 92.2% |
+| RNN(rnn_cell) + Attention | word_embedding | cross_entropy | 92.1% |
+| RNN(lstm_cell) + Attention | word_embedding | cross_entropy | **92.4%** |
+| RNN(gru_cell) + Attention | word_embedding | cross_entropy | 92.2% |
+| RNN(indRnn_cell) + Attention | word_embedding | cross_entropy | 92.1% |
+| CNN + highway | word_embedding | cross_entropy | 91.4% |
+| DCNN + highway | word_embedding | cross_entropy | 91.7% |
+| DPCNN + highway | word_embedding | cross_entropy | 91.4% |
+| RNN(lstm_cell) + highway | word_embedding | cross_entropy | 91.6% |
+| RNN(lstm_cell) + Attention + highway | word_embedding | cross_entropy | 92.2% |
+| HAN + highway | word_embedding | cross_entropy | 92.1% |
+| ATTENTION + highway | word_embedding | cross_entropy | 91.2% |
 
 ## 参考文献:
 (待整理)
