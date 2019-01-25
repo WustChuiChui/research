@@ -5,11 +5,11 @@
 目前已集成文本分类的相关代码，供大家学习，有任何写得不好的地方，欢迎大家及时指正。
 
 ## 环境配置:
-Python:  3.67
-tensorflow:	1.90
+<br/> Python:  3.67 </br>
+tensorflow:  1.90
 
 ## 代码运行:
-cd ～/research/classify/sentiment_classfy
+<br/> cd ～/research/classify/sentiment_classfy </br>
 python sentiment_trainer.py
 
 ## 数据格式:
