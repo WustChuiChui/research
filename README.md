@@ -1,22 +1,22 @@
-#前沿深度学习代码复现与优化
+# 前沿深度学习代码复现与优化
 
-##简介：
+## 简介：
 这里对学术界2014-2018年State Of The Art papers进行了代码集成与复现，便于进行对比实验验证分析。
 目前已集成文本分类的相关代码，供大家学习，有任何写得不好的地方，欢迎大家及时指正。
 
-##环境配置:
+## 环境配置:
 Python:  3.67
 tensorflow:	1.90
 
-##代码运行:
+## 代码运行:
 cd ～/research/classify/sentiment_classfy
 python sentiment_trainer.py
 
-##数据格式:
+## 数据格式:
 Json格式存储。每一行Json数据对象应包含query字段,intent为分类标签,tags为序列标注标签,该数据格式支持
 分类和序列标注的联合模型实用,intent和tags均为可选字段(不可同时缺失)
 
-##参数说明:
+## 参数说明:
 由于本项目中对多个模型进行了集成,可能需要您选定指定的参数去调用不同的embedding或encoder。本项目将所
 有参数集中在Json格式的文件中(config/sentimentConfig),常见的调用参数列表如下:
 * 1 corpus_info: 这里存储的主要是数据集相关文件的路径配置文件参数，如:
@@ -61,10 +61,10 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 					**basic_cell**: RNN网络结构基本神经元结构, 可选参数如: RNN， LSTM, GRU, indRNN
 					need_highway: 是否加入highway网络结构, 默认为false(不加入highway结构)
 
-##实验结果:
+## 实验结果:
 (待整理)
 
-##参考文献:
+## 参考文献:
 (周末整理)
 
 
