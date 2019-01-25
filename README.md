@@ -14,13 +14,15 @@ python sentiment_trainer.py
 
 ## 数据格式:
 Json格式存储。每一行Json数据对象应包含query字段,intent为分类标签,tags为序列标注标签,该数据格式支持
-分类和序列标注的联合模型实用,intent和tags均为可选字段(不可同时缺失)
+分类和序列标注的联合模型实用,intent和tags均为可选字段(不可同时缺失), 如:
+<br/> {"query": "今天很开心", "intent": "positive"} </br>
+<br/> {"query": "张三今天很开心", "intent": "positive", "tags":"B_PERSON E_PERSON O O O O O"} </br>
 
 ## 参数说明:
 由于本项目中对多个模型进行了集成,可能需要您选定指定的参数去调用不同的embedding或encoder。本项目将所
 有参数集中在Json格式的文件中(config/sentimentConfig),常见的调用参数列表如下:
 * 1 corpus_info: 这里存储的主要是数据集相关文件的路径配置文件参数，如:
-					intent_id_file: 为分类标签和id的映射关系文件
+					<br/> intent_id_file: 为分类标签和id的映射关系文件 </br>
 					dev_res: 交叉验证结果的存储文件(便于badcase分析)
 * 2 model_parameters: 模型的一些超参数, 您可能需要常修改的参数如:
 					**embedding_type**: embedding的类别, 项目里支持多种embedding类型，可选值包括:
