@@ -4,7 +4,7 @@ import tensorflow as tf
 class ActivationAdapter(object):
     def __init__(self, config, **kwargs):
         self.activation_type = config.encoder_parameters.activation_type \
-            if hasattr(config.encoder_parameters, "activation_type") else "relu"
+            if hasattr(config.encoder_parameters, "activation_type") else "swish"
         self.actication_dicts = {"relu":tf.nn.relu,
                                  "sigmoid":tf.nn.sigmoid,
                                  "tanh":tf.nn.tanh,
@@ -102,8 +102,7 @@ class ActivationAdapter(object):
     def getInstance(self):
         if self.activation_type in self.actication_dicts:
             logging.info("activation use %s" % (self.activation_type))
-            print("\nactivation use %s\n" % (self.activation_type))
             return self.actication_dicts[self.activation_type]
         else:
             logging.WARN("activation param is invalid. ")
-            return tf.nn.relu
+            return self.swish

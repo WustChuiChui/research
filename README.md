@@ -60,7 +60,29 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
                      "attention_encoder":attention is all you need                             
                      "han_encoder": HAN网络结构，级联的Attention机制      
              **basic_cell**: RNN网络结构基本神经元结构, 可选参数如: RNN， LSTM, GRU, indRNN            
-             need_highway: 是否加入highway网络结构, 默认为false(不加入highway结构)       
+             need_highway: 是否加入highway网络结构, 默认为false(不加入highway结构) 
+
+             **activation_type**:激活函数类型选择参数，这里集成了18种不同的激活函数，包括tf种已经集成的和2017年   
+                                 Ramachandran et提出的swish激活函数等等，可选参数如:  
+                        "relu":tf.nn.relu   
+                        "sigmoid":tf.nn.sigmoid   
+                        "tanh":tf.nn.tanh  
+                        "leaky_relu":leakyRelu  
+                        "elu":tf.nn.elu   
+                        "selu":tf.nn.selu   
+                        "swish":swish   
+                        "sin":tf.sin  
+                        "cube":cube  
+                        "penalized_tanh":penalized_tanh   
+                        "cosper":cosper  
+                        "minsin":minsin  
+                        "tanhrev":tanhrev   
+                        "maxsig":maxsig   
+                        "maxtanh":maxtanh  
+                        "softplus":tf.nn.softplus  
+                        "softsign":tf.nn.softsign   
+                        "linear":linear   
+                        默认值为**swish**, 建议使用**swish**或**penalized_tanh**
 
 ## 实验结果:
 ### embedding:     
@@ -108,9 +130,42 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | HAN + highway | word_embedding | cross_entropy | 92.1% |
 | ATTENTION + highway | word_embedding | cross_entropy | 91.2% |
 
+### activation_type:
+| activation_type | encoder结构 | embedding类型 | 准确率 |
+| relu | CNN | word_embedding | 91.2% |
+| sigmoid | CNN | word_embedding | 90.8 |
+| tanh | CNN | word_embedding | 90.7 |
+| leaky_relu | CNN | word_embedding | 91.0 |
+| elu | CNN | word_embedding | 90.8 |
+| selu | CNN | word_embedding | 90.8 |
+| swish | CNN | word_embedding | **91.5** |
+| sin | CNN | word_embedding | 90.2 |
+| cube | CNN | word_embedding | 90.3 |
+| penalized_tanh | CNN | word_embedding | **91.5%** |
+| cosper | CNN | word_embedding | 90.8% |
+| minsin | CNN | word_embedding | 90.7% |
+| tanhrev | CNN | word_embedding | 90.6% |
+| maxsig | CNN | word_embedding | 90.4% |
+| maxtanh | CNN | word_embedding | 90.6% |
+| softplus | CNN | word_embedding | 90.7% |
+| softsign | CNN | word_embedding | 90.4% |
+| linear | CNN | word_embedding | 90.7% |
+| swish | DCNN | word_embedding | 91.6% |
+| swish | DPCNN | word_embedding | 91.6% |
+| swish | CNN + highway | word_embedding | 91.6% |
+| swish | DCNN + highway | word_embedding | 91.7% |
+| swish | CNN | scalar_region_embedding | 91.8% |
+| swish | CNN | win_pool_embedding | 91.8% |
+| swish | CNN | word_context_embedding | 91.8% |
+| penalized_tanh | DCNN | word_embedding | 91.6% |
+| penalized_tanh | DPCNN | word_embdedding | 91.7% |
+| penalized_tanh | CNN | scalar_region_embedding | 91.7% |
+| penalized_tanh | CNN | win_pool_embedding | 91.7 % |
+| penalized_tanh | CNN | word_context_embedding | 91.8% |
+
 ## 致谢
 感谢在校期间顾进广老师团队的各位师兄(姐)弟(妹)领我入门NLP, 感谢徐芳芳(芳芳姐)对我的关照，   
-感谢陪我一路走过的朋友的鼓励与支持，感谢在杭州遇到的每一位同事对我工作的指导和Code Review，  
+感谢陪我一路走过的朋友的鼓励与支持，感谢一路遇到的每一位同事对我工作的指导和Code Review，  
 最后感谢我最亲爱的女王大人和尚未出生的孩子，感谢你们能给我不断前行的动力！
 
 ## 说明
@@ -118,14 +173,14 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 有技术交流，求职或技术合作的需求可联系博主进行沟通(635401873@qq.com)。
 
 ## 参考文献:
-1. Yoom Kim, 2014, Convolutional Neural Networks for Sentence Classification.
-2. Nal Kalchbrenner, 2014, A Convolutional Neural Network for Modelling Sentences.
+1. Yoom Kim, 2014, Convolutional Neural Networks for Sentence Classification.  
+2. Nal Kalchbrenner, 2014, A Convolutional Neural Network for Modelling Sentences.  
 3. Peng Zhou, 2016, ACL, Attention-Based Bidirectional Long Short-Term Memory Networks for
-Relation Classification.
-4. Ashish Vaswani, 2017, NIPS, Attention is All you Need.
-5. Shuai Li, 2018, CVPR, Independently Recurrent Neural Network (IndRNN): Building A Longer and Deeper RNN.
-6. Zichao Yang, 2016, ACL, Hierarchical Attention Networks for Document Classification.
-7. Rie Johnson, ACL, Tencent, Deep Pyramid Convolutional Neural Networks for Text Categorization.
-8. Chao Qiao, 2018, ACL, baidu, A NEW METHOD OF REGION EMBEDDING FOR TEXT CLASSIFICATION.
-9. He Kaiming, 2017, ICCV, Focal Loss for Dense Object Detection.
-
+Relation Classification.  
+4. Ashish Vaswani, 2017, NIPS, Attention is All you Need.  
+5. Shuai Li, 2018, CVPR, Independently Recurrent Neural Network (IndRNN): Building A Longer and Deeper RNN.  
+6. Zichao Yang, 2016, ACL, Hierarchical Attention Networks for Document Classification.  
+7. Rie Johnson, ACL, Tencent, Deep Pyramid Convolutional Neural Networks for Text Categorization.  
+8. Chao Qiao, 2018, ACL, baidu, A NEW METHOD OF REGION EMBEDDING FOR TEXT CLASSIFICATION.  
+9. He Kaiming, 2017, ICCV, Focal Loss for Dense Object Detection.  
+10. Steffen Eger, 2018, EMNLP, Is it Time to Swish? Comparing Deep Learning Activation Functions Across NLP tasks
