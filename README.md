@@ -60,7 +60,7 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
                      "attention_encoder":attention is all you need                             
                      "han_encoder": HAN网络结构，级联的Attention机制      
              **basic_cell**: RNN网络结构基本神经元结构, 可选参数如: RNN， LSTM, GRU, indRNN            
-             need_highway: 是否加入highway网络结构, 默认为false(不加入highway结构) 
+             need_highway: 是否加入highway网络结构, 默认为false(不加入highway结构)  
 
              **activation_type**:激活函数类型选择参数，这里集成了18种不同的激活函数，包括tf种已经集成的和2017年   
                                  Ramachandran et提出的swish激活函数等等，可选参数如:  
@@ -130,7 +130,7 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | HAN + highway | word_embedding | cross_entropy | 92.1% |
 | ATTENTION + highway | word_embedding | cross_entropy | 91.2% |
 
-### activation_type:
+### activation_type:  
 | activation_type | encoder结构 | embedding类型 | 准确率 |
 | relu | CNN | word_embedding | 91.2% |
 | sigmoid | CNN | word_embedding | 90.8 |
