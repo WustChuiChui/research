@@ -108,6 +108,10 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | HAN + highway | word_embedding | cross_entropy | 92.1% |
 | ATTENTION + highway | word_embedding | cross_entropy | 91.2% |
 
+## 致谢
+感谢在校期间顾进广老师团队的各位师兄(姐)弟(妹)领我入门NLP, 感谢徐芳芳(芳芳姐)对我的关照，   
+感谢陪我一路走过的朋友的鼓励与支持，感谢在杭州遇到的每一位同事对我工作的指导和Code Review，  
+最后感谢我最亲爱的女王大人和尚未出生的孩子，感谢你们能给我不断前行的动力！
 
 ## 说明
 如果您觉得该代码好用, 引用该代码时请注明代码出处，记得留下你的小星星哦.  
