@@ -113,4 +113,14 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 如果您觉得该代码好用, 引用该代码时请注明代码出处，记得留下你的小星星哦
 
 ## 参考文献:
-(待整理)
+1. Yoom Kim, 2014, Convolutional Neural Networks for Sentence Classification.
+2. Nal Kalchbrenner, 2014, A Convolutional Neural Network for Modelling Sentences.
+3. Peng Zhou, 2016, ACL, Attention-Based Bidirectional Long Short-Term Memory Networks for
+Relation Classification.
+4. Ashish Vaswani, 2017, NIPS, Attention is All you Need.
+5. Shuai Li, 2018, CVPR, Independently Recurrent Neural Network (IndRNN): Building A Longer and Deeper RNN.
+6. Zichao Yang, 2016, ACL, Hierarchical Attention Networks for Document Classification.
+7. Rie Johnson, ACL, Tencent, Deep Pyramid Convolutional Neural Networks for Text Categorization.
+8. Chao Qiao, 2018, ACL, baidu, A NEW METHOD OF REGION EMBEDDING FOR TEXT CLASSIFICATION.
+9. He Kaiming, 2017, ICCV, Focal Loss for Dense Object Detection.
+
