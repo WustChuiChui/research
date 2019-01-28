@@ -2,6 +2,7 @@ import sys, time
 sys.path.append("../")
 import tensorflow as tf
 from config.configParser import ConfigParser
+from common.activations import ActivationAdapter
 
 """
 Brief: DPCNN Encoder
@@ -13,6 +14,7 @@ class DPCNNEncoder(object):
         #self.filter_sizes = config.encoder_parameters.filter_sizes
         self.num_filters = config.encoder_parameters.num_filters
         self.out_size = config.model_parameters.out_size
+        self.act_fun = ActivationAdapter(config).getInstance()
 
     def conv(self, x, filter_height, filter_width, filter_input, filter_output):
         filter_shape = [filter_height, filter_width, filter_input, filter_output]
@@ -21,9 +23,9 @@ class DPCNNEncoder(object):
         conv = tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding="SAME")
         return tf.nn.bias_add(conv, b)
 
-    def act_fun(self, inputs, name="act_fun"):
-        with tf.name_scope(name):
-            return tf.nn.relu(inputs, name="relu")
+    #def act_fun(self, inputs, name="act_fun"):
+    #    with tf.name_scope(name):
+    #        return tf.nn.relu(inputs, name="relu")
 
     def max_pool(self, inputs, k_height, k_width, stride):
         return tf.nn.max_pool(inputs, ksize=[1, k_height, k_width, 1], strides=[1, stride, 1, 1], padding="SAME")

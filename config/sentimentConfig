@@ -39,6 +39,7 @@
 		"basic_cell":"lstm_cell",
 		"need_highway":false,
 		"num_filters":100,
+		"activation_type":"linear",
 		"filter_size":3
 	}
 }

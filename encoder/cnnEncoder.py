@@ -8,6 +8,7 @@ kim: CNN for text classfication
 import sys
 sys.path.append("../")
 import numpy as np
+from common.activations import ActivationAdapter
 import tensorflow as tf
 
 class CNNEncoder(object):
@@ -16,6 +17,7 @@ class CNNEncoder(object):
         self.embedding_size = config.model_parameters.embedding_size
         self.num_filters = config.encoder_parameters.num_filters
         self.seq_len = config.model_parameters.max_len
+        self.act_func = ActivationAdapter(config).getInstance()
 
     def __call__(self, inputs):
         pooled_outputs = []
@@ -25,7 +27,7 @@ class CNNEncoder(object):
             W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name="W")
             b = tf.Variable(tf.constant(0.1, shape=[self.num_filters]), name="b")
             conv = tf.nn.conv2d(inputs, W, strides=[1,1,1,1], padding="VALID", name="conv")
-            h = tf.nn.relu(tf.nn.bias_add(conv, b), name="relu")
+            h = self.act_func(tf.nn.bias_add(conv, b))
             pooled = tf.nn.max_pool(h, ksize=[1, self.seq_len - filter_size + 1, 1, 1], strides=[1, 1, 1, 1], padding="VALID", name="pool")
             pooled_outputs.append(pooled)
 
@@ -33,4 +35,3 @@ class CNNEncoder(object):
         self.h_pool = tf.concat(pooled_outputs, 3)
         self.h_pool = tf.reshape(self.h_pool, [-1, num_filters_total])
         return self.h_pool, num_filters_total
-

@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/wangjia/research/sequence_labeling/slot_filling/model/model/ckpt"
+all_model_checkpoint_paths: "/home/wangjia/research/sequence_labeling/slot_filling/model/model/ckpt"

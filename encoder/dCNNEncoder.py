@@ -3,6 +3,7 @@ sys.path.append("../")
 import tensorflow as tf
 from config.configParser import ConfigParser
 from common.baseLayer import fullConnectLayer
+from common.activations import ActivationAdapter
 
 """
 Brief: DCNN Encoder
@@ -19,25 +20,7 @@ class DCNNEncoder(object):
         self.k1 = 11
         self.out_size = config.model_parameters.out_size
         self.ws = [7, 5]
-
-    """
-    def per_dim_conv_k_max_pooling(self, x, w, b, k):
-        self.k1 = k
-        input_unstack = tf.unstack(x, axis=2)
-        w_unstack = tf.unstack(w, axis=1)
-        b_unstack = tf.unstack(b, axis=1)
-
-        convs = []
-        with tf.name_scope("per_dim_conv_k_max_pooling"):
-            for i in range(self.embedding_size):
-                conv = tf.nn.relu(tf.nn.conv1d(input_unstack[i], w_unstack[i], stride=1, padding="SAME") + b_unstack[i])
-                conv = tf.reshape(conv, [self.batch_size, self.num_filters[0], self.max_len])
-                values = tf.nn.top_k(conv, k, sorted=False).values
-                values = tf.reshape(values, [self.batch_size, k, self.num_filters[0]])
-                convs.append(values)
-            conv = tf.stack(convs, axis=2)
-        return conv
-    """
+        self.act_func = ActivationAdapter(config).getInstance()
 
     def per_dim_conv(self, x, w, b):
         input_unstack = tf.unstack(x, axis=2)
@@ -47,7 +30,7 @@ class DCNNEncoder(object):
         convs = []
         with tf.name_scope("per_dim_conv"):
             for i in range(len(input_unstack)):
-                conv = tf.nn.relu(tf.nn.conv1d(input_unstack[i], w_unstack[i], stride=1, padding="SAME") + b_unstack[i])
+                conv = self.act_func(tf.nn.conv1d(input_unstack[i], w_unstack[i], stride=1, padding="SAME") + b_unstack[i])
                 convs.append(conv)
             conv = tf.stack(convs, axis=2)
         return conv

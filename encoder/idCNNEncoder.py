@@ -2,6 +2,7 @@ import sys, time
 sys.path.append("../")
 import tensorflow as tf
 from config.configParser import ConfigParser
+from common.activations import ActivationAdapter
 
 """
 Brief: IDCNN Encoder
@@ -15,6 +16,7 @@ class IDCNNEncoder(object):
         self.embedding_size = config.model_parameters.embedding_size
         self.num_filter = config.encoder_parameters.num_filters
         self.repeat_times = 4
+        self.act_func = ActivationAdapter(config).getInstance()
 
     def __call__(self, inputs):
         inputs = tf.expand_dims(inputs, 1)
@@ -32,7 +34,7 @@ class IDCNNEncoder(object):
                     w = tf.Variable(tf.truncated_normal(shape=[1, self.filter_width, self.num_filter, self.num_filter], stddev=0.1))
                     b = tf.Variable(tf.constant(0.1, shape=[self.num_filter]), name="b")
                     conv = tf.nn.atrous_conv2d(layer_input, w, rate=dilation, padding="SAME")
-                    conv = tf.nn.relu(tf.nn.bias_add(conv, b))
+                    conv = self.act_func(tf.nn.bias_add(conv, b))
                     if isLast:
                         final_layers.append(conv)
                         total_last_dim += self.num_filter
