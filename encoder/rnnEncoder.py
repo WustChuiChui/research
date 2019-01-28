@@ -15,6 +15,7 @@ class RNNEncoder(object):
     def __init__(self, config, **kwargs):
         self.hidden_size = config.encoder_parameters.hidden_size
         self.keep_prob = config.encoder_parameters.keep_prob
+        self.keep_ori = kwargs["keep_ori"] if "keep_ori" in kwargs else False
         self.with_attention_layer = config.encoder_parameters.with_attention_layer if hasattr(config.encoder_parameters, "with_attention_layer") else False
         self.basic_cell = config.encoder_parameters.basic_cell if hasattr(config.encoder_parameters, "basic_cell") else "gru_cell"
         self.cell_dic = {"rnn_cell":BasicRNNCell,
@@ -33,6 +34,8 @@ class RNNEncoder(object):
                                     GRUCell(self.hidden_size),
                                     inputs=batch_embedding, dtype=tf.float32)
             print("Rnn encoder with default GRU cell")
+        if self.keep_ori:
+            return tf.concat([rnn_outputs[0], rnn_outputs[1]], axis=-1)
         if self.with_attention_layer:
             print("Build a Self-Attention Layer")
             return attention(rnn_outputs, self.keep_prob), self.hidden_size

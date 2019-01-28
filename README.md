@@ -110,7 +110,8 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 
 
 ## 说明
-如果您觉得该代码好用, 引用该代码时请注明代码出处，记得留下你的小星星哦
+如果您觉得该代码好用, 引用该代码时请注明代码出处，记得留下你的小星星哦.  
+有技术交流，求职或技术合作的需求可联系博主进行沟通(635401873@qq.com)。
 
 ## 参考文献:
 1. Yoom Kim, 2014, Convolutional Neural Networks for Sentence Classification.

@@ -48,7 +48,7 @@ class SentimentTrainer(object):
         print("Test accuracy : %f %%" % (test_acc / cnt * 100))
 
 if __name__ == "__main__":
-    config = ConfigParser(config_file = "../../config/ticketConfig")
+    config = ConfigParser(config_file = "../../config/sentimentConfig")
     print(type(config))
     sentiment_trainer_obj = SentimentTrainer(config)
     sentiment_trainer_obj.train()

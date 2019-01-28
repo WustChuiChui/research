@@ -94,12 +94,15 @@ class PreProcess(object):
         #encode id matrix
         train_data_x = encodeQuery(train_data_list, vocab) 
         train_data_y = encodeLabel(train_data_list, intent_id_map)
-            
+        train_data_tags = encodeTags(train_data_list, tag_id_map)    
+
         dev_data_x = encodeQuery(dev_data_list, vocab)
         dev_data_y = encodeLabel(dev_data_list, intent_id_map) 
+        dev_data_tags = encodeTags(dev_data_list, tag_id_map)
      
         test_data_x = encodeQuery(test_data_list, vocab) 
         test_data_y = encodeLabel(test_data_list, intent_id_map)
+        test_data_tags = encodeTags(test_data_list, tag_id_map)
    
         #package data 
         res_dic = {"raw_train_data_list":train_data_list,
@@ -108,12 +111,17 @@ class PreProcess(object):
                 "vocab":vocab,
                 "intent_id_map":intent_id_map,
                 "id_intent_map":id_intent_map,
+                "tag_id_map":tag_id_map,
+                "id_tag_map":id_tag_map,
                 "train_data_x":train_data_x,
                 "train_data_y":train_data_y,
+                "train_data_tags":train_data_tags,
                 "dev_data_x":dev_data_x,
                 "dev_data_y":dev_data_y,
+                "dev_data_tags":dev_data_tags,
                 "test_data_x":test_data_x,
-                "test_data_y":test_data_y
+                "test_data_y":test_data_y,
+                "test_data_tags":test_data_tags
             }
         return res_dic
 

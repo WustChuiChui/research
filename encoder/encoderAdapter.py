@@ -18,6 +18,7 @@ Encoder Adapter
 class EncoderAdapter(object):
     def __init__(self, config, **kwargs):
         self.config = config
+        self.keep_ori = kwargs["keep_ori"] if "keep_ori" in kwargs else False
         self.encoder_type = config.encoder_parameters.encoder_type if hasattr(config.encoder_parameters, "encoder_type") else "cnn_encoder"
         self.input_x = kwargs["input_x"] if "input_x" in kwargs else None
         self.encoder_options = {"rnn_encoder":RNNEncoder,
@@ -34,7 +35,7 @@ class EncoderAdapter(object):
     def getInstance(self):
         if self.encoder_type in self.encoder_options:
             print("EncoderType: " + self.encoder_type)
-            return self.encoder_options[self.encoder_type](config=self.config, input_x=self.input_x)
+            return self.encoder_options[self.encoder_type](config=self.config, input_x=self.input_x, keep_ori = self.keep_ori)
         print("Encoder with default type: cnn_encoder")
         return self.encoder_options["cnn_encoder"](config=self.config, input_x=self.input_x)
 

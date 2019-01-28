@@ -20,6 +20,7 @@
 		"region_size":3,
 		"vocab_size":5557,
 		"out_size":9,
+		"tag_size":7,
 		"train_epoch":10,
 		"batch_size":64,
 		"ckpt_file_path":"model/ckpt"
@@ -35,7 +36,7 @@
 		"hidden_size":64,
 		"keep_prob":0.5,
 		"encoder_type":"rnn_encoder",
-		"with_attention_layer":true,
+		"with_attention_layer":false,
 		"basic_cell":"lstm_cell",
 		"need_highway":false,
 		"num_filters":100,
