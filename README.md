@@ -154,14 +154,14 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | swish | DPCNN | word_embedding | 91.6% |
 | swish | CNN + highway | word_embedding | 91.6% |
 | swish | DCNN + highway | word_embedding | 91.7% |
-| swish | CNN | scalar_region_embedding | 91.8% |
-| swish | CNN | win_pool_embedding | 91.8% |
-| swish | CNN | word_context_embedding | 91.8% |
+| swish | CNN | scalar_region_embedding | **91.8%** |
+| swish | CNN | win_pool_embedding | **91.8%** |
+| swish | CNN | word_context_embedding | **91.8%** |
 | penalized_tanh | DCNN | word_embedding | 91.6% |
 | penalized_tanh | DPCNN | word_embdedding | 91.7% |
 | penalized_tanh | CNN | scalar_region_embedding | 91.7% |
 | penalized_tanh | CNN | win_pool_embedding | 91.7 % |
-| penalized_tanh | CNN | word_context_embedding | 91.8% |
+| penalized_tanh | CNN | word_context_embedding | **91.8%** |
 
 ## 致谢
 感谢在校期间顾进广老师团队的各位师兄(姐)弟(妹)领我入门NLP, 感谢徐芳芳(芳芳姐)对我的关照，   
