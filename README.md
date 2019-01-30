@@ -183,4 +183,5 @@ Relation Classification.
 7. Rie Johnson, ACL, Tencent, Deep Pyramid Convolutional Neural Networks for Text Categorization.  
 8. Chao Qiao, 2018, ACL, baidu, A NEW METHOD OF REGION EMBEDDING FOR TEXT CLASSIFICATION.  
 9. He Kaiming, 2017, ICCV, Focal Loss for Dense Object Detection.  
-10. Steffen Eger, 2018, EMNLP, Is it Time to Swish? Comparing Deep Learning Activation Functions Across NLP tasks
+10. Steffen Eger, 2018, EMNLP, Is it Time to Swish? Comparing Deep Learning Activation Functions Across NLP tasks.
+11. Prajit Ramachandran, 2017, CVPR, Google, SEARCHING FOR ACTIVATION FUNCTIONS.
