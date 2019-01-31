@@ -9,12 +9,12 @@
 tensorflow:  1.90
 
 ## 代码运行:
-### 文本分类demo(已提供部分数据):
-<br/> cd ～/research/classify/sentiment_classfy </br>
+### Text Categorization:  
+cd ～/research/classify/sentiment_classfy  
 python trainer.py  
 
-### Slot Filling: 
-<br/> cd ～/research/sequence_labeling/slot_filling </br>
+### Slot Filling:   
+cd ～/research/sequence_labeling/slot_filling  
 python trainer.py  
 
 ## 数据格式:
@@ -88,7 +88,7 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
                         "linear":linear   
                         默认值为**swish**, 建议使用**swish**或**penalized_tanh**
 
-## 实验结果:
+## Text Categorization实验结果:
 ### embedding:     
 
 | embedding类型 | 模型结构 | loss | 准确率 |
