@@ -2,15 +2,20 @@
 
 ## 简介：
 这里对学术界2014-2018年**State Of The Art papers**进行了代码集成与复现，便于进行对比实验验证分析。
-目前已集成文本分类的相关代码，供大家学习，有任何写得不好的地方，欢迎大家及时指正。
+目前已集成Text Categorization和Slot Filling的demo，供大家学习，有任何写得不好的地方，欢迎大家及时指正。
 
 ## 环境配置:
 <br/> Python:  3.67 </br>
 tensorflow:  1.90
 
 ## 代码运行:
+### 文本分类demo(已提供部分数据):
 <br/> cd ～/research/classify/sentiment_classfy </br>
-python sentiment_trainer.py
+python trainer.py  
+
+### Slot Filling: 
+<br/> cd ～/research/sequence_labeling/slot_filling </br>
+python trainer.py  
 
 ## 数据格式:
 Json格式存储。每一行Json数据对象应包含query字段,intent为分类标签,tags为序列标注标签,该数据格式支持

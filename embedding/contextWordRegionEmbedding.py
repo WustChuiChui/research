@@ -37,12 +37,12 @@ class ContextWordRegionEmbedding(WordEmbedding):
         """forward
         """
         region_radius = int(self._region_size / 2)
-        word_emb = tf.nn.embedding_lookup(self._word_emb, \
+        word_emb = tf.nn.embedding_lookup(self._word_emb, \  #按region_radius切分，[batch_size, seq_len - 2 * region_radius, embedd_dim]
                 tf.slice(seq, \
                 [0, region_radius], \
                 [-1, tf.cast(seq.get_shape()[1] - 2 * region_radius, tf.int32)]))
-        word_emb = tf.expand_dims(word_emb, 2)
-        region_aligned_unit = self._region_aligned_units(seq)
-        embedding = region_aligned_unit * word_emb
-        embedding = self._region_merge_fn(embedding, axis=2)
+        word_emb = tf.expand_dims(word_emb, 2)   #[batch_size, seq_len - 2 * region_radius, 1, embedd_dim]
+        region_aligned_unit = self._region_aligned_units(seq)  #[batch_size, seq_len - 2 * region_radius, 3, embedd_dim]
+        embedding = region_aligned_unit * word_emb   #[batch_size, seq_len - 2 * region_radius, 1, embedd_dim]
+        embedding = self._region_merge_fn(embedding, axis=2)   #[batch_size, seq_len - 2 * region_radius, embedd_dim]
         return embedding

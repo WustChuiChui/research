@@ -66,34 +66,6 @@ def fill_feed_dict(data_X, data_Y, batch_size, need_shuffle=False):
         y_batch = data_Y[batch_size * idx: batch_size * (idx + 1)]
         yield np.array(x_batch), np.array(y_batch)
 
-def make_train_feed_dict(model, batch):
-    feed_dict = {model.x: batch[0],
-                model.label: batch[1],
-                model.keep_prob: .5}
-    return feed_dict                    
-                     
-def make_test_feed_dict(model, batch):
-    feed_dict = {model.x: batch[0],
-                model.label: batch[1],
-                model.keep_prob: 1.0}
-    return feed_dict
-                                   
-def train_step(model, sess, batch):
-    feed_dict = make_train_feed_dict(model, batch)
-    to_return = {
-            'train_op': model.train_op,
-            'loss': model.loss,
-            'global_step': model.global_step,
-    }
-    return sess.run(to_return, feed_dict) 
-    
-def eval_step(model, sess, batch):
-    feed_dict = make_test_feed_dict(model, batch)
-    prediction = sess.run(model.prediction, feed_dict)
-    labels = [item.index(max(item)) for item in batch[1].tolist()]
-    acc = np.sum(np.equal(prediction, labels)) / len(prediction)
-    return acc, prediction
-
 def ppr_report(encoded_labels, prediction, id_intent_dic):
     max_idxs = list(np.argmax(encoded_labels, 1))
     id_list = sorted(id_intent_dic.items(), key = lambda x:x[0], reverse=False)
