@@ -16,7 +16,7 @@
 		"max_len":20,
 		"embedding_size":200,
 		"learning_rate":1e-3,
-		"embedding_type":"word_embedding",
+		"embedding_type":"win_pool_embedding",
 		"region_size":3,
 		"vocab_size":3402,
 		"out_size":2,

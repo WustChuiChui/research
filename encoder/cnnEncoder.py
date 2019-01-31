@@ -16,11 +16,11 @@ class CNNEncoder(object):
         self.filters_size = [3,4,5]
         self.embedding_size = config.model_parameters.embedding_size
         self.num_filters = config.encoder_parameters.num_filters
-        self.seq_len = config.model_parameters.max_len
         self.act_func = ActivationAdapter(config).getInstance()
 
     def __call__(self, inputs):
         pooled_outputs = []
+        seq_len = inputs.shape[1].value
         inputs = tf.expand_dims(inputs, -1)
         for i, filter_size in enumerate(self.filters_size):
             filter_shape = [filter_size, self.embedding_size, 1, self.num_filters]
@@ -28,7 +28,7 @@ class CNNEncoder(object):
             b = tf.Variable(tf.constant(0.1, shape=[self.num_filters]), name="b")
             conv = tf.nn.conv2d(inputs, W, strides=[1,1,1,1], padding="VALID", name="conv")
             h = self.act_func(tf.nn.bias_add(conv, b))
-            pooled = tf.nn.max_pool(h, ksize=[1, self.seq_len - filter_size + 1, 1, 1], strides=[1, 1, 1, 1], padding="VALID", name="pool")
+            pooled = tf.nn.max_pool(h, ksize=[1, seq_len - filter_size + 1, 1, 1], strides=[1, 1, 1, 1], padding="VALID", name="pool")
             pooled_outputs.append(pooled)
 
         num_filters_total = self.num_filters * len(self.filters_size)

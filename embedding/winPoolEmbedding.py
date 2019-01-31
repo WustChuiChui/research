@@ -19,13 +19,8 @@ class WinPoolEmbedding(WordEmbedding):
             **kwargs):
         
         BaseLayer.__init__(self, name, **kwargs) 
-        self._emb_size = emb_size
         self._region_size = region_size
         self._region_merge_fn = region_merge_fn
-        if not initializer:
-            initializer = tf.contrib.layers.variance_scaling_initializer()
-        self._K = self.get_variable(name + '_K', shape=[vocab_size, region_size, emb_size],
-                initializer=initializer)
         super(WinPoolEmbedding, self).__init__(vocab_size, emb_size, name,
                 initializer, **kwargs)
 

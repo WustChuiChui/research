@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/wangjia/research/classify/sentiment_classfy/model/model/ckpt"
+all_model_checkpoint_paths: "/home/wangjia/research/classify/sentiment_classfy/model/model/ckpt"
