@@ -6,17 +6,17 @@ from setting import *
 import tensorflow as tf
 from sklearn.metrics import classification_report
 
-def encodeQuery(data_list, vocab, length=20, padding=PAD):
+def encodeQuery(data_list, vocab, length=20, key="query",padding=PAD):
     res_list = []
     for item in data_list:
         word_id_list = []
-        for word in item["query"]:
+        for word in item[key]:
             if len(word_id_list) >= length: break
             if word in vocab:
                 word_id_list.append(vocab[word])
             else:
                 word_id_list.append(vocab[UNK])
-        for idx in range(len(item["query"]), length):
+        for idx in range(len(item[key]), length):
             word_id_list.append(vocab[padding])
         res_list.append(word_id_list)
     return np.array(res_list)

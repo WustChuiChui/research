@@ -37,7 +37,7 @@ class ContextWordRegionEmbedding(WordEmbedding):
         """forward
         """
         region_radius = int(self._region_size / 2)
-        word_emb = tf.nn.embedding_lookup(self._word_emb, \  #按region_radius切分，[batch_size, seq_len - 2 * region_radius, embedd_dim]
+        word_emb = tf.nn.embedding_lookup(self._word_emb, \
                 tf.slice(seq, \
                 [0, region_radius], \
                 [-1, tf.cast(seq.get_shape()[1] - 2 * region_radius, tf.int32)]))
