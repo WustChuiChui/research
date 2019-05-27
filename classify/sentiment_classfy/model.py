@@ -2,7 +2,7 @@ import sys, time
 sys.path.append("../../")
 import tensorflow as tf
 from attention.Attention import attention
-from common.baseLayer import linearLayer  
+from common.baseLayer import linearLayer, fullConnectLayer  
 from config.configParser import ConfigParser
 from embedding.embeddingAdapter import EmbeddingAdapter
 from loss.lossAdapter import LossAdapter
@@ -16,9 +16,9 @@ class Model(object):
         self.out_size = config.model_parameters.out_size
 
         #placeholder
-        self.x = tf.placeholder(tf.int32, [None, self.max_len])
-        self.label = tf.placeholder(tf.int32, [None, None])
-        self.keep_prob = tf.placeholder(tf.float32)
+        self.x = tf.placeholder(tf.int32, [None, self.max_len], name="input_x")
+        self.label = tf.placeholder(tf.int32, [None, None], name="input_y")
+        self.keep_prob = tf.placeholder(tf.float32, shape=[], name="keep_prob")
 
     def buildGraph(self, config):
         #embedding
@@ -28,10 +28,13 @@ class Model(object):
         h_drop, hidden_size = EncoderAdapter(config=config, input_x=self.x).getInstance()(batch_embedding)
 
         #dense layer
-        y_hat = linearLayer(h_drop, hidden_size, self.out_size, self.keep_prob, need_highway=config.encoder_parameters.need_highway)
+        #y_hat = linearLayer(h_drop, hidden_size, self.out_size, need_highway=config.encoder_parameters.need_highway)
+        y_hat = fullConnectLayer(h_drop, hidden_size, self.out_size)
+        y_hat = tf.nn.dropout(y_hat, self.keep_prob)
 
         #prediction
-        self.prediction = tf.argmax(tf.nn.softmax(y_hat), 1)
+        self.logits = tf.nn.softmax(y_hat, name="logits")
+        self.prediction = tf.argmax(self.logits, 1, name="predict")
         
         #loss
         self.loss = LossAdapter(config.loss_parameters).getLoss(logits=y_hat, labels=self.label)
