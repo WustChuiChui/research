@@ -1,0 +1,5 @@
+1.保存模型
+2.linux terminal，输入命令  tensorflow-mode-serving --rest_api_port=7831 --model_name=default --model_base_path=/bert_model_path
+
+3.创建一个http请求去访问这个7831端口，或使用linux命令
+GET http://host:port/v1/models/${MODEL_NAME}[/versions/${MODEL_VERSION}]/metadatahttps://www.tensorflow.org/tfx/serving/api_rest

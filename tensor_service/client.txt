@@ -1,0 +1,21 @@
+def request_model_predict(input_ids, input_mask, segment_ids, is_training):
+    url = 'http://localhost:7831/v1/models/default:predict'
+    data = {'inputs': {'input_ids': input_ids,
+                       'input_mask': input_mask,
+                       'segment_ids': segment_ids,
+                       'is_training': is_training,
+                     },
+            'signature_name': 'predict_text'}
+            
+            
+    json_data = json.dumps(data)
+
+    #print(json_data)
+    results = requests.post(url, data=json_data)
+    #print(results.text)
+    result_json = json.loads(results.text)
+    pred_labels = result_json['outputs']['pred_labels']
+    probs = result_json['outputs']['probs']
+    return np.array(pred_labels), np.array(probs)
+    
+    
