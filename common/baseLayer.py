@@ -49,7 +49,7 @@ def fullConnectLayer(inputs, in_size, out_size, keep_dropout = 1.0):
     W = tf.Variable(tf.truncated_normal([in_size, out_size], stddev=0.1))
     b = tf.Variable(tf.constant(0., shape=[out_size]))
     y_hat = tf.nn.xw_plus_b(inputs, W, b) 
-    y_hat = tf.nn.dropout(y_hat, keep_dropout)
+    #y_hat = tf.nn.dropout(y_hat, keep_dropout)
     return y_hat
 
 def highWay(inputs, size, num_layers=2, fc=tf.nn.relu, scope="Highway"):

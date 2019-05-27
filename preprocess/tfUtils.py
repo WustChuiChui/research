@@ -86,8 +86,8 @@ def decode_ner_result(verterbi_seq, id_tag_map, raw_data_list, max_len=20):
         res.append(query_tag_list)
     return res
 
-def __splitTagType(tag):
-    s = tag.split('-')
+def __splitTagType(tag, split_token="_"):
+    s = tag.split(split_token)
     #if len(s) > 2 or len(s) == 0:
     if len(s) > 3 or len(s) == 0:
         raise ValueError('tag format wrong. it must be B-xxx.xxx')
@@ -146,7 +146,7 @@ def __endOfChunk(prevTag, tag, prevTagType, tagType, chunkEnd = False):
         chunkEnd = True
     return chunkEnd
 
-def computeF1Score(correct_slots, pred_slots):
+def computeF1Score(correct_slots, pred_slots, split_token="-"):
     correctChunk = {}
     correctChunkCnt = 0
     foundCorrect = {}
@@ -161,9 +161,10 @@ def computeF1Score(correct_slots, pred_slots):
         lastCorrectType = ''
         lastPredTag = 'O'
         lastPredType = ''
+        print("correct_slot: %s \t\tpred_slot: %s" % (correct_slot, pred_slot))
         for c, p in zip(correct_slot, pred_slot):
-            correctTag, correctType = __splitTagType(c)
-            predTag, predType = __splitTagType(p)
+            correctTag, correctType = __splitTagType(c, split_token=split_token)
+            predTag, predType = __splitTagType(p, split_token=split_token)
 
             if inCorrect == True:
                 if __endOfChunk(lastCorrectTag, correctTag, lastCorrectType, correctType) == True and \

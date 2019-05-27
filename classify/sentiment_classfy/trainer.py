@@ -36,6 +36,9 @@ class Trainer(object):
             save_model_ckpt(sess, config.model_parameters.ckpt_file_path)
             ppr_report(self.data_dic["dev_data_y"], prediction, self.data_dic["id_intent_map"])
 
+            test_acc, prediction = self.eval_step(self.classifier, sess, (self.data_dic["test_data_x"], self.data_dic["test_data_y"]))
+            print("Test accuracy: %.f " % (test_acc))
+
     def test(self, sess):
         cnt = 0.0
         test_acc = 0.0
@@ -76,7 +79,7 @@ class Trainer(object):
         return feed_dict
 
 if __name__ == "__main__":
-    config = ConfigParser(config_file = "../../config/sentimentConfig")
+    config = ConfigParser(config_file = "../../config/hotelConfig")
     print(type(config))
     sentiment_trainer_obj = Trainer(config)
     sentiment_trainer_obj.train()

@@ -92,17 +92,17 @@ class PreProcess(object):
         saveKeyValueData(id_tag_map, config.corpus_info.data_path + config.corpus_info.id_tag_file)
 
         #encode id matrix
-        train_data_x = encodeQuery(train_data_list, vocab) 
+        train_data_x = encodeQuery(train_data_list, vocab, length=config.model_parameters.max_len) 
         train_data_y = encodeLabel(train_data_list, intent_id_map)
-        train_data_tags = encodeTags(train_data_list, tag_id_map)    
+        train_data_tags = encodeTags(train_data_list, tag_id_map, length=config.model_parameters.max_len)    
 
-        dev_data_x = encodeQuery(dev_data_list, vocab)
+        dev_data_x = encodeQuery(dev_data_list, vocab, length=config.model_parameters.max_len)
         dev_data_y = encodeLabel(dev_data_list, intent_id_map) 
-        dev_data_tags = encodeTags(dev_data_list, tag_id_map)
+        dev_data_tags = encodeTags(dev_data_list, tag_id_map, length=config.model_parameters.max_len)
      
-        test_data_x = encodeQuery(test_data_list, vocab) 
+        test_data_x = encodeQuery(test_data_list, vocab, length=config.model_parameters.max_len) 
         test_data_y = encodeLabel(test_data_list, intent_id_map)
-        test_data_tags = encodeTags(test_data_list, tag_id_map)
+        test_data_tags = encodeTags(test_data_list, tag_id_map, length=config.model_parameters.max_len)
    
         #package data 
         res_dic = {"raw_train_data_list":train_data_list,

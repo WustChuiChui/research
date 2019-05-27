@@ -55,7 +55,7 @@ class Trainer(object):
             viterbi_seq, viterbi_score = self.eval_step(self.model, sess, (self.data_dic["dev_data_x"], self.data_dic["dev_data_tags"]))
             decoded_res = decode_ner_result(viterbi_seq, self.data_dic["id_tag_map"], self.data_dic["raw_dev_data_list"])
             tags_list = [item["tags"].strip().split(" ") for item in self.data_dic["raw_dev_data_list"]]
-            f1, precision, recall = computeF1Score(tags_list, decoded_res) 
+            f1, precision, recall = computeF1Score(tags_list, decoded_res, split_token="_") 
             print("precision: %0.3f, recall: %0.3f, f1: %0.3f" % (precision, recall, f1))
             save_model_ckpt(sess, config.model_parameters.ckpt_file_path)
 
@@ -73,6 +73,6 @@ class Trainer(object):
     """
 
 if __name__ == "__main__":
-    config = ConfigParser(config_file = "../../config/ticketConfig")
+    config = ConfigParser(config_file = "../../config/hotelNERConfig")
     trainer_obj = Trainer(config)
     trainer_obj.train()

@@ -1,7 +1,7 @@
 import sys, time
 sys.path.append("../../")
 import tensorflow as tf
-from common.baseLayer import linearLayer  
+from common.baseLayer import linearLayer, fullConnectLayer  
 from config.configParser import ConfigParser
 from embedding.embeddingAdapter import EmbeddingAdapter
 from loss.lossAdapter import LossAdapter
@@ -15,9 +15,9 @@ class Model(object):
         self.add_placeholders()
 
     def add_placeholders(self):
-        self.inputs = tf.placeholder(tf.int32, shape=[None, None], name="inputs")
+        self.inputs = tf.placeholder(tf.int32, shape=[None, None], name="input_x")
         self.tags = tf.placeholder(tf.int32, shape=[None, None], name="tags")
-        self.keep_drop = tf.placeholder(dtype=tf.float32, shape=[], name="keep_drop")
+        self.keep_drop = tf.placeholder(dtype=tf.float32, shape=[], name="keep_prob")
         self.sequence_lengths = tf.placeholder(dtype=tf.int32, shape=[None], name="sequence_lengths")
 
     def buildGraph(self, config):
@@ -26,7 +26,10 @@ class Model(object):
         h_drop  = EncoderAdapter(config=config, keep_ori=True).getInstance()(batch_embedding) #(batch_size, seq_len, 2 * hidden_size)
 
         output = tf.reshape(h_drop, [-1, 2 * config.encoder_parameters.hidden_size])  #(batch_size * seq_len, 2 * hidden_size)
-        output = linearLayer(output, 2 * config.encoder_parameters.hidden_size, self.tags_size, self.keep_drop) #(batch_size * seq_len, tags_size) 
+        #output = linearLayer(output, 2 * config.encoder_parameters.hidden_size, self.tags_size, self.keep_drop) #(batch_size * seq_len, tags_size) 
+        output = fullConnectLayer(output, 2 * config.encoder_parameters.hidden_size, self.tags_size)    
+        output = tf.nn.dropout(output, self.keep_drop)
+
         self.logits = tf.reshape(output, [-1, tf.shape(h_drop)[1], self.tags_size], name="logits") #(batch_size, seq_len, tags_size)
         
         self.loss = self.getCRFLikelihoodLoss(self.logits, self.tags, self.sequence_lengths)
