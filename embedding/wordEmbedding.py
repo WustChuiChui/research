@@ -20,7 +20,7 @@ class WordEmbedding(BaseLayer):
         self._W = self.get_variable(name + '_W', shape=[vocab_size, emb_size],
                 initializer=initializer)
 
-    def _forward(self, seq):
+    def _forward(self, seq, **kwargs):
         return tf.nn.embedding_lookup(self._W, seq)
 
 class RegionAlignmentLayer(BaseLayer):

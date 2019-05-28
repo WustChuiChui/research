@@ -33,7 +33,7 @@ class ContextWordRegionEmbedding(WordEmbedding):
         region_aligned_unit = super(ContextWordRegionEmbedding, self)._forward(region_aligned_seq)
         return region_aligned_unit
     
-    def _forward(self, seq):
+    def _forward(self, seq, **kwargs):
         """forward
         """
         region_radius = int(self._region_size / 2)

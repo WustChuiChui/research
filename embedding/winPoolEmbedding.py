@@ -24,7 +24,7 @@ class WinPoolEmbedding(WordEmbedding):
         super(WinPoolEmbedding, self).__init__(vocab_size, emb_size, name,
                 initializer, **kwargs)
 
-    def _forward(self, seq):
+    def _forward(self, seq, **kwargs):
         # Region alignment embedding
         region_aligned_seq = RegionAlignmentLayer(self._region_size)(seq)
         region_aligned_emb = super(WinPoolEmbedding, self)._forward(region_aligned_seq)

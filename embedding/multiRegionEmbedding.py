@@ -38,7 +38,7 @@ class MultiRegionEmbedding(WordEmbedding):
         super(MultiRegionEmbedding, self).__init__(vocab_size, emb_size, name,
                 initializer, **kwargs)
 
-    def _forward(self, seq):
+    def _forward(self, seq, **kwargs):
         """_forward
         """
         multi_region_emb = [] 

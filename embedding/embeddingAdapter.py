@@ -28,8 +28,10 @@ class EmbeddingAdapter(object):
                                   "scalar_region_embedding":ScalarRegionEmbedding,
                                   "word_context_embedding":WordContextRegionEmbedding,
                                   "context_word_embedding":ContextWordRegionEmbedding,
-                                  "multi_region_embedding":MultiRegionEmbedding}
+                                  "multi_region_embedding":MultiRegionEmbedding,
+                                  "character_embedding":CharacterEmbedding}
         self.region_size = config.region_size if hasattr(config, "region_size") else 3
+        self.hidden_size = config.hidden_size if hasattr(config, "hidden_size") else 64
         if self.embedding_type == "multi_region_embedding":
             region_size_list = config.region_size.strip().split(",")
             self.region_size = [int(item.strip()) for item in region_size_list]
@@ -39,6 +41,9 @@ class EmbeddingAdapter(object):
         if self.embedding_type == "word_embedding":
             print("EmbeddingType: " + self.embedding_type)
             return self.embedding_options["word_embedding"](self.vocab_size, self.embedding_size)
+        elif self.embedding_type == "character_embedding":
+            print("EmbeddingType: " + self.embedding_type)
+            return self.embedding_options["character_embedding"](self.vocab_size, self.embedding_size, self.hidden_size)
         elif self.embedding_type in self.embedding_options:
             print("EmbeddingType: " + self.embedding_type)
             return self.embedding_options[self.embedding_type](self.vocab_size, self.embedding_size, self.region_size)
