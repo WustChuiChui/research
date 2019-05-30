@@ -16,7 +16,7 @@
 		"max_len":30,
 		"embedding_size":100,
 		"learning_rate":1e-3,
-		"embedding_type":"word_embedding",
+		"embedding_type":"enhanced_embedding",
 		"region_size":3,
 		"vocab_size":4878,
 		"out_size":2,
@@ -35,7 +35,7 @@
 	"encoder_parameters": {
 		"hidden_size":64,
 		"keep_prob":0.5,
-		"encoder_type":"cnn_encoder",
+		"encoder_type":"rnn_encoder",
 		"with_attention_layer":true,
 		"basic_cell":"lstm_cell",
 		"need_highway":false,

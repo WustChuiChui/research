@@ -9,9 +9,10 @@ import sys
 sys.path.append("../")
 import tensorflow as tf
 import numpy as np
+from common.baseLayer import BaseLayer
+from embedding.wordEmbedding import WordEmbedding
 
-
-class CharacterEmbedding(BaseLayer):
+class CharacterEmbedding(WordEmbedding):
 
     def __init__(self, vocab_size, emb_size, name="character_embedding",
         initializer=None, **kwargs):

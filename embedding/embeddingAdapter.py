@@ -17,6 +17,8 @@ from embedding.scalarRegionEmbedding import ScalarRegionEmbedding
 from embedding.wordContextRegionEmbedding import WordContextRegionEmbedding
 from embedding.contextWordRegionEmbedding import ContextWordRegionEmbedding
 from embedding.multiRegionEmbedding import MultiRegionEmbedding
+from embedding.characterEmbedding import CharacterEmbedding
+from embedding.enhancedWordEmbedding import EnhancedWordEmbedding
 
 class EmbeddingAdapter(object):
     def __init__(self, config):
@@ -29,9 +31,11 @@ class EmbeddingAdapter(object):
                                   "word_context_embedding":WordContextRegionEmbedding,
                                   "context_word_embedding":ContextWordRegionEmbedding,
                                   "multi_region_embedding":MultiRegionEmbedding,
-                                  "character_embedding":CharacterEmbedding}
+                                  "character_embedding":CharacterEmbedding,
+                                  "enhanced_embedding":EnhancedWordEmbedding}
         self.region_size = config.region_size if hasattr(config, "region_size") else 3
         self.hidden_size = config.hidden_size if hasattr(config, "hidden_size") else 64
+        self.scale = config.scale if hasattr(config, "scale") else 0.5
         if self.embedding_type == "multi_region_embedding":
             region_size_list = config.region_size.strip().split(",")
             self.region_size = [int(item.strip()) for item in region_size_list]
@@ -41,6 +45,9 @@ class EmbeddingAdapter(object):
         if self.embedding_type == "word_embedding":
             print("EmbeddingType: " + self.embedding_type)
             return self.embedding_options["word_embedding"](self.vocab_size, self.embedding_size)
+        elif self.embedding_type == "enhanced_embedding":
+            print("EmbeddingType: " + self.embedding_type)
+            return self.embedding_options["enhanced_embedding"](self.vocab_size, self.embedding_size, scale = self.scale)
         elif self.embedding_type == "character_embedding":
             print("EmbeddingType: " + self.embedding_type)
             return self.embedding_options["character_embedding"](self.vocab_size, self.embedding_size, self.hidden_size)

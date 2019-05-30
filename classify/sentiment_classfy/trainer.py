@@ -79,7 +79,7 @@ class Trainer(object):
         return feed_dict
 
 if __name__ == "__main__":
-    config = ConfigParser(config_file = "../../config/hotelConfig")
+    config = ConfigParser(config_file = "../../config/sentimentConfig")
     print(type(config))
     sentiment_trainer_obj = Trainer(config)
     sentiment_trainer_obj.train()

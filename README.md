@@ -32,6 +32,8 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 * 2 model_parameters: 模型的一些超参数, 您可能需要常修改的参数如:          
              **embedding_type**: embedding的类别, 项目里支持多种embedding类型，可选值包括:    
                       "word_embedding": word_embedding    
+                      "character_embedding": pinyin/stroke character embedding  
+                      "enhanced_embedding": enhanced word embedding    
                       "win_pool_embedding": facebook fastText region embedding    
                       "scalar_region_embedding" facebook region embedding(scalar)   
                       "word_context_embedding": baidu wordContextEmbedding    
@@ -94,6 +96,8 @@ Json格式存储。每一行Json数据对象应包含query字段,intent为分类
 | embedding类型 | 模型结构 | loss | 准确率 |
 | ---------  | :---------:   | :---------: | :---------: |
 | word_embedding  | CNN | cross_entropy | 91.2%  |
+| enhanced_embedding  | CNN | cross_entropy | 91.9%  |
+| character_embedding  | TODO | TODO | TODO  |
 | win_pool_embedding | CNN | cross_entropy | **92.4%** |
 | scalar_region_embedding | CNN | cross_entropy | 92.1% |
 | word_context_embedding | CNN | cross_entropy | 92.3% |
